@@ -1,0 +1,9 @@
+{
+  "complilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "#*": ["src/*"]
+    }
+  },
+  "include": ["src"]
+}
