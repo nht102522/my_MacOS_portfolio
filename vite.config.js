@@ -12,19 +12,22 @@ export default defineConfig({
     alias: {
       "#components": resolve(
         dirname(fileURLToPath(import.meta.url)),
-        "components",
+        "src/components",
       ),
 
       "#constants": resolve(
         dirname(fileURLToPath(import.meta.url)),
-        "constants",
+        "src/constants",
       ),
 
-      "#store": resolve(dirname(fileURLToPath(import.meta.url)), "store"),
+      "#store": resolve(dirname(fileURLToPath(import.meta.url)), "src/store"),
 
-      "#hoc": resolve(dirname(fileURLToPath(import.meta.url)), "hoc"),
+      "#hoc": resolve(dirname(fileURLToPath(import.meta.url)), "src/hoc"),
 
-      "#windows": resolve(dirname(fileURLToPath(import.meta.url)), "windows"),
+      "#windows": resolve(
+        dirname(fileURLToPath(import.meta.url)),
+        "src/windows",
+      ),
     },
   },
 });
