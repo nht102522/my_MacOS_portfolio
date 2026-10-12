@@ -3,7 +3,6 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import gsap from "gsap";
 import { Tooltip } from "react-tooltip";
-import { useEffect } from "react";
 import useWindowStore from "#store/window";
 
 const Dock = () => {
@@ -38,7 +37,7 @@ const Dock = () => {
     };
     const resetIcons = () =>
       icons.forEach((icon) =>
-        gsap.to(icon, { scale: 1, y: 0, durantion: 0.3, ease: "power1.out" }),
+        gsap.to(icon, { scale: 1, y: 0, duration: 0.3, ease: "power1.out" }),
       );
     dock.addEventListener("mousemove", handleMouseMove);
     dock.addEventListener("mouseleave", resetIcons);
