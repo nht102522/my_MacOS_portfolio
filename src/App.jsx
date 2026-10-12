@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { useEffect } from "react";
 import { Navbar, Welcome, Dock, Home } from "#components";
 import useWindowStore from "#store/window";
+import { preloadAssets } from "./utils/preloadAssets";
 import {
   Terminal,
   Safari,
@@ -16,6 +17,10 @@ import {
 
 gsap.registerPlugin(Draggable);
 const App = () => {
+  useEffect(() => {
+    void preloadAssets();
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key !== "Escape" || event.repeat || event.isComposing) {
