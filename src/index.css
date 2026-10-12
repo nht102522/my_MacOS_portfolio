@@ -308,9 +308,24 @@ body {
 
   #finder {
     @apply absolute w-3xl left-40 top-20 shadow-2xl drop-shadow-2xl overflow-hidden rounded-xl;
+    max-width: calc(100dvw - 2rem);
+
+    @media (width < 64rem) {
+      @apply left-4;
+    }
+
+    .finder-body {
+      @apply flex bg-white;
+      min-height: min(20rem, calc(100dvh - 10rem));
+      max-height: calc(100dvh - 10rem);
+    }
 
     .sidebar {
-      @apply w-48 bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3;
+      @apply w-48 shrink-0 overflow-y-auto bg-gray-50 border-r border-gray-200 flex flex-col p-5 space-y-3;
+
+      @media (width < 40rem) {
+        @apply w-36 p-3;
+      }
 
       h3 {
         @apply text-xs font-medium text-gray-400 mb-1;
@@ -329,22 +344,28 @@ body {
 
         li {
           @apply flex items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors;
+
+          img {
+            @apply size-4 shrink-0 object-contain;
+          }
         }
       }
     }
 
     .content {
-      @apply flex-1 p-8 bg-white max-w-2xl relative;
+      @apply grid flex-1 min-w-0 content-start gap-x-4 gap-y-6 p-6 bg-white overflow-y-auto;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 8rem), 1fr));
 
       li {
-        @apply absolute flex items-center flex-col gap-3;
+        @apply flex min-w-0 min-h-32 items-center flex-col gap-3 rounded-md p-2 cursor-pointer;
 
         img {
-          @apply object-contain object-center size-16 relative group-hover:scale-105;
+          @apply object-contain object-center size-16 shrink-0 transition-transform group-hover:scale-105;
         }
 
         p {
-          @apply text-sm text-center font-medium w-40;
+          @apply text-sm text-center font-medium w-full;
+          overflow-wrap: anywhere;
         }
       }
     }
@@ -352,26 +373,53 @@ body {
 
   #txtfile {
     @apply w-md absolute top-36 right-32 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    max-width: calc(100dvw - 2rem);
+
+    @media (width < 40rem) {
+      @apply right-4;
+    }
 
     h2 {
-      @apply font-bold text-sm text-center w-full;
+      @apply flex-1 min-w-0 font-bold text-sm text-center;
+      overflow-wrap: anywhere;
+    }
+
+    .text-content {
+      @apply p-6 space-y-5 overflow-y-auto text-sm leading-relaxed text-gray-700;
+      max-height: calc(100dvh - 14rem);
+      overflow-wrap: anywhere;
+
+      img {
+        @apply block w-full max-h-64 object-contain rounded-md;
+      }
+
+      h3 {
+        @apply text-base font-semibold text-gray-900;
+      }
     }
   }
 
   #imgfile {
     @apply w-xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    max-width: calc(100dvw - 2rem);
+
+    @media (width < 40rem) {
+      @apply left-4;
+    }
 
     #window-header {
-      p {
-        @apply font-bold text-[#5f6266];
+      h2 {
+        @apply flex-1 min-w-0 text-sm text-center font-bold text-[#5f6266];
+        overflow-wrap: anywhere;
       }
     }
 
     .preview {
-      @apply p-2 bg-gray-200 max-h-[70vh];
+      @apply p-2 bg-gray-200;
 
       img {
-        @apply w-full h-fit object-contain object-center;
+        @apply block w-full object-contain object-center;
+        max-height: calc(100dvh - 15rem);
       }
     }
   }
