@@ -25,6 +25,7 @@ const WindowWrapper = (Component, windowKey) => {
         const [instance] = Draggable.create(el, {
           type: "x,y",
           trigger: el.querySelector("#window-header"),
+          dragClickables: false,
           bounds: el.parentElement,
           zIndexBoost: false,
           onPressInit: () => openingAnimation.progress(1),
@@ -39,13 +40,16 @@ const WindowWrapper = (Component, windowKey) => {
       const el = ref.current;
       if (!el) return;
       el.style.display = isOpen ? "block" : "none";
+      if (isOpen) el.focus({ preventScroll: true });
     }, [isOpen]);
     return (
       <section
         id={windowKey}
         ref={ref}
         style={{ zIndex }}
-        className="absolute"
+        className="absolute outline-none"
+        tabIndex={-1}
+        onFocusCapture={() => focusWindow(windowKey)}
         onMouseDown={() => focusWindow(windowKey)}
       >
         {isOpen && <Component {...props} />}

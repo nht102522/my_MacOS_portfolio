@@ -99,18 +99,59 @@ body {
   }
 
   #window-controls {
-    @apply flex gap-2;
+    @apply flex shrink-0 items-center;
 
-    .close {
-      @apply size-3.5 rounded-full bg-[#ff6157] cursor-pointer;
+    .window-control {
+      @apply flex size-7 shrink-0 items-center justify-center rounded-full;
     }
 
-    .minimize {
-      @apply size-3.5 rounded-full bg-[#ffc030];
+    button.window-control {
+      @apply cursor-pointer;
+
+      &:focus-visible {
+        @apply outline-2 outline-offset-1 outline-gray-500;
+      }
+
+      &:active .control-dot {
+        @apply scale-90;
+      }
     }
 
-    .maximize {
-      @apply size-3.5 rounded-full bg-[#2acb42];
+    .control-dot {
+      @apply pointer-events-none flex size-3.5 shrink-0 items-center justify-center rounded-full transition-transform;
+
+      svg {
+        @apply opacity-0 transition-opacity;
+      }
+    }
+
+    &:hover .control-dot svg,
+    &:focus-within .control-dot svg {
+      @apply opacity-100;
+    }
+
+    @media (hover: none) {
+      .control-dot svg {
+        @apply opacity-100;
+      }
+    }
+
+    @media (pointer: coarse) {
+      .window-control {
+        @apply size-11;
+      }
+    }
+
+    .close .control-dot {
+      @apply bg-[#ff6157] text-[#86150f];
+    }
+
+    .minimize .control-dot {
+      @apply bg-[#ffc030] text-[#8f6400];
+    }
+
+    .maximize .control-dot {
+      @apply bg-[#2acb42] text-[#075b18];
     }
   }
 
@@ -223,10 +264,11 @@ body {
       @apply flex items-center gap-3;
 
       li {
-        @apply rounded-lg p-3 w-60 hover:-translate-y-0.5 hover:scale-105 origin-center transition-all duration-300;
+        @apply rounded-lg w-60 hover:-translate-y-0.5 hover:scale-105 origin-center transition-all duration-300;
 
-        a {
-          @apply space-y-5;
+        a,
+        button {
+          @apply block w-full space-y-5 p-3 text-left cursor-pointer;
         }
 
         p {
