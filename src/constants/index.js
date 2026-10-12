@@ -189,19 +189,19 @@ const photosLinks = [
 const gallery = [
   {
     id: 1,
-    img: "/images/gal1.png",
+    img: "/images/namtrinh.jpg",
   },
   {
     id: 2,
-    img: "/images/gal2.png",
+    img: "/images/namtrinh_yellow_bg.png",
   },
   {
     id: 3,
-    img: "/images/gal3.png",
+    img: "/images/namtrinh_travel.jpg",
   },
   {
     id: 4,
-    img: "/images/gal4.png",
+    img: "/images/namtrinh_usa.jpg",
   },
 ];
 
