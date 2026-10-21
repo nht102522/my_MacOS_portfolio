@@ -170,22 +170,22 @@ body {
       }
     }
 
-    .blog {
+    .websites {
       @apply bg-white p-10 max-w-3xl mx-auto;
 
       h2 {
         @apply text-xl font-bold text-pink-600 mb-10;
       }
 
-      .blog-post {
-        @apply grid grid-cols-12 space-x-5;
+      .website-card {
+        @apply grid grid-cols-[9rem_minmax(0,1fr)] items-center gap-6;
 
         img {
-          @apply size-full rounded-md object-cover;
+          @apply w-full aspect-video rounded-md object-cover border border-gray-200;
         }
 
         .content {
-          @apply col-span-10 space-y-3;
+          @apply min-w-0 space-y-3;
 
           p {
             @apply text-xs text-gray-500;
@@ -442,26 +442,32 @@ body {
   }
 
   #imgfile {
-    @apply w-xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
-    max-width: calc(100dvw - 2rem);
+    @apply absolute top-16 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    --image-window-width: min(92dvw, 100rem);
+    width: var(--image-window-width);
+    left: calc((100dvw - var(--image-window-width)) / 2);
 
     @media (width < 40rem) {
-      @apply left-4;
+      @apply top-14 left-4;
+      --image-window-width: calc(100dvw - 2rem);
     }
 
     #window-header {
       h2 {
-        @apply flex-1 min-w-0 text-sm text-center font-bold text-[#5f6266];
-        overflow-wrap: anywhere;
+        @apply flex-1 min-w-0 truncate text-sm text-center font-bold text-[#5f6266];
       }
     }
 
     .preview {
-      @apply p-2 bg-gray-200;
+      @apply flex items-center justify-center p-2 bg-gray-200;
+      height: calc(100dvh - 15rem);
+
+      @media (width < 40rem) {
+        height: calc(100dvh - 8rem);
+      }
 
       img {
-        @apply block w-full object-contain object-center;
-        max-height: calc(100dvh - 15rem);
+        @apply block size-full object-contain object-center;
       }
     }
   }

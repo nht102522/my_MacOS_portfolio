@@ -13,7 +13,7 @@ const Image = () => {
     <>
       <div id="window-header">
         <WindowControls target="imgfile" />
-        <h2>{name}</h2>
+        <h2 title={name}>{name}</h2>
       </div>
       <div className="preview">
         <img src={imageUrl} alt={name} />
